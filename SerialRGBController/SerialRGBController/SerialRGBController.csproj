@@ -2,7 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>WinForms Arduino RGB Controller</Description>
+    <PackageProjectUrl>https://github.com/bradmartin333/SerialRGB</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>RGB; LED; Arduino; WinForms</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Version>1.0.1</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />

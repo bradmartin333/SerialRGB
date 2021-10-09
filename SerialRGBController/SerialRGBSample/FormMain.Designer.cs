@@ -1,6 +1,6 @@
 ﻿namespace SerialRGBSample
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.serialRGBController1 = new SerialRGB.SerialRGBController();
+            this.btnManualCycle = new System.Windows.Forms.Button();
+            this.serialRGBController = new SerialRGBController.SerialRGBController();
             this.SuspendLayout();
             // 
-            // serialRGBController1
+            // btnManualCycle
             // 
-            this.serialRGBController1.Location = new System.Drawing.Point(24, 21);
-            this.serialRGBController1.Name = "serialRGBController1";
-            this.serialRGBController1.Size = new System.Drawing.Size(145, 114);
-            this.serialRGBController1.TabIndex = 0;
+            this.btnManualCycle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManualCycle.Location = new System.Drawing.Point(12, 184);
+            this.btnManualCycle.Name = "btnManualCycle";
+            this.btnManualCycle.Size = new System.Drawing.Size(145, 23);
+            this.btnManualCycle.TabIndex = 1;
+            this.btnManualCycle.Text = "Manual Cycle";
+            this.btnManualCycle.UseVisualStyleBackColor = true;
+            this.btnManualCycle.Click += new System.EventHandler(this.btnManualCycle_Click);
             // 
-            // Form1
+            // serialRGBController
+            // 
+            this.serialRGBController.Location = new System.Drawing.Point(12, 12);
+            this.serialRGBController.Name = "serialRGBController";
+            this.serialRGBController.Size = new System.Drawing.Size(145, 114);
+            this.serialRGBController.TabIndex = 0;
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(202, 153);
-            this.Controls.Add(this.serialRGBController1);
+            this.ClientSize = new System.Drawing.Size(173, 219);
+            this.Controls.Add(this.btnManualCycle);
+            this.Controls.Add(this.serialRGBController);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serial RGB Sample";
             this.ResumeLayout(false);
@@ -56,7 +69,7 @@
 
         #endregion
 
-        private SerialRGB.SerialRGBController serialRGBController1;
+        private SerialRGBController.SerialRGBController serialRGBController;
+        private System.Windows.Forms.Button btnManualCycle;
     }
 }
-

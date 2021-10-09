@@ -1,5 +1,5 @@
 ﻿
-namespace SerialRGB
+namespace SerialRGBController
 {
     partial class SerialRGBController
     {
@@ -30,9 +30,9 @@ namespace SerialRGB
         private void InitializeComponent()
         {
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btnPickColor = new System.Windows.Forms.Button();
             this.comboBox = new System.Windows.Forms.ComboBox();
             this.btnConnect = new System.Windows.Forms.Button();
+            this.btnPickColor = new System.Windows.Forms.Button();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel.SuspendLayout();
@@ -59,21 +59,6 @@ namespace SerialRGB
             this.tableLayoutPanel.Size = new System.Drawing.Size(145, 114);
             this.tableLayoutPanel.TabIndex = 0;
             // 
-            // btnPickColor
-            // 
-            this.btnPickColor.AutoSize = true;
-            this.btnPickColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPickColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnPickColor.FlatAppearance.BorderSize = 3;
-            this.btnPickColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPickColor.Location = new System.Drawing.Point(12, 73);
-            this.btnPickColor.Name = "btnPickColor";
-            this.btnPickColor.Size = new System.Drawing.Size(121, 29);
-            this.btnPickColor.TabIndex = 0;
-            this.btnPickColor.Text = "Pick Color";
-            this.btnPickColor.UseVisualStyleBackColor = true;
-            this.btnPickColor.Click += new System.EventHandler(this.btnPickColor_Click);
-            // 
             // comboBox
             // 
             this.comboBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -99,6 +84,21 @@ namespace SerialRGB
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
+            // btnPickColor
+            // 
+            this.btnPickColor.AutoSize = true;
+            this.btnPickColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPickColor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnPickColor.FlatAppearance.BorderSize = 3;
+            this.btnPickColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPickColor.Location = new System.Drawing.Point(12, 73);
+            this.btnPickColor.Name = "btnPickColor";
+            this.btnPickColor.Size = new System.Drawing.Size(121, 29);
+            this.btnPickColor.TabIndex = 0;
+            this.btnPickColor.Text = "Pick Color";
+            this.btnPickColor.UseVisualStyleBackColor = true;
+            this.btnPickColor.Click += new System.EventHandler(this.btnPickColor_Click);
+            // 
             // colorDialog
             // 
             this.colorDialog.AnyColor = true;
@@ -120,10 +120,10 @@ namespace SerialRGB
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.Button btnPickColor;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.ComboBox comboBox;
-        private System.Windows.Forms.Button btnConnect;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        public System.Windows.Forms.Button btnPickColor;
+        public System.Windows.Forms.ComboBox comboBox;
+        public System.Windows.Forms.Button btnConnect;
     }
 }

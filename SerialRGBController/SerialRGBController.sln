@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialRGBController", "SerialRGBController\SerialRGBController.csproj", "{C8DE11C6-BAFB-4A26-B803-FEA8F799ABEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerialRGBController", "SerialRGBController\SerialRGBController.csproj", "{C8DE11C6-BAFB-4A26-B803-FEA8F799ABEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialRGBSample", "SerialRGBSample\SerialRGBSample.csproj", "{88FA7CBF-9692-4D8B-8B50-D9CBDDE6609A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6213A1E4-BB7F-4B67-B570-E8B9ED923C68}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

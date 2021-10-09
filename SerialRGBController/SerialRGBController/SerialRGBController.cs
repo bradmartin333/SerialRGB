@@ -1,25 +1,21 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SerialRGB
+namespace SerialRGBController
 {
     public partial class SerialRGBController : UserControl
     {
-        [
-            Description("Application will try to automatically connect to first appropriate COM port"),
-            Category("Data")
-        ]
-
-        private readonly Communication Communication;
-
+        public Communication Communication;
+        
+        /// <summary>
+        /// User Control for simple communication
+        /// </summary>
         public SerialRGBController()
         {
             InitializeComponent();
-            Name = "SerialRGBController";
             Communication = new Communication();
-            Communication.ScanPorts(comboBox);
+            Communication.UserControlScanPorts(comboBox);
             Disposed += Controller_Disposed;
         }
 
@@ -41,12 +37,15 @@ namespace SerialRGB
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            ConnectAndUpdateStatus();
+            Communication.Connect();
+            UpdateStatus();
         }
 
-        private void ConnectAndUpdateStatus()
+        /// <summary>
+        /// Check for communication port and update button status
+        /// </summary>
+        public void UpdateStatus()
         {
-            Communication.Connect();
             if (Communication.Port.IsOpen)
             {
                 btnConnect.FlatAppearance.BorderColor = Color.Green;
@@ -55,9 +54,10 @@ namespace SerialRGB
             }
             else
             {
-                btnConnect.FlatAppearance.BorderColor = Color.Red;
-                btnConnect.Text = "Error";
+                btnConnect.FlatAppearance.BorderColor = Color.Black;
+                btnConnect.Text = "Connect";
             }
+            Application.DoEvents();
         }
 
         private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
