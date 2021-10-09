@@ -1,4 +1,4 @@
-# SerialRGB
+# SerialRGB ![Nuget](https://img.shields.io/nuget/v/SerialRGBController)
 WinForms Arduino RGB Controller
 
 1) Add the NuGet package to your prroject
