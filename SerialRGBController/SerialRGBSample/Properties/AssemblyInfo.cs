@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SerialRGB")]
+[assembly: AssemblyTitle("SerialRGBSample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SerialRGB")]
+[assembly: AssemblyProduct("SerialRGBSample")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7a620a32-4e14-431f-9168-4aa3dcbb4280")]
+[assembly: Guid("88fa7cbf-9692-4d8b-8b50-d9cbdde6609a")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{24C691F0-5928-41DD-B77B-C377E4A59EC8}</ProjectGuid>
+    <ProjectGuid>{88FA7CBF-9692-4D8B-8B50-D9CBDDE6609A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Sample</RootNamespace>
-    <AssemblyName>Sample</AssemblyName>
+    <RootNamespace>SerialRGBSample</RootNamespace>
+    <AssemblyName>SerialRGBSample</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -80,9 +80,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SerialRGB\SerialRGB.csproj">
-      <Project>{7a620a32-4e14-431f-9168-4aa3dcbb4280}</Project>
-      <Name>SerialRGB</Name>
+    <ProjectReference Include="..\SerialRGBController\SerialRGBController.csproj">
+      <Project>{c8de11c6-bafb-4a26-b803-fea8f799abeb}</Project>
+      <Name>SerialRGBController</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
