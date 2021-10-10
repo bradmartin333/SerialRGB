@@ -1,24 +1,20 @@
 ﻿using System.IO.Ports;
-using System.Diagnostics;
 using System.Windows.Forms;
 using System;
 using System.Drawing;
-using System.Text;
+using System.Diagnostics;
 
 namespace SerialRGBController
 {
     public class Communication
     {
         public SerialPort Port;
-        private readonly bool DEBUG = false;
 
         /// <summary>
         /// Initalize an Arduino communicator with optinal debug output
         /// </summary>
-        /// <param name="DEBUG"></param>
-        public Communication(bool DEBUG = false)
+        public Communication(string PortName = null)
         {
-            this.DEBUG = DEBUG;
             Port = new SerialPort
             {
                 BaudRate = 115200,
@@ -33,6 +29,7 @@ namespace SerialRGBController
                 StopBits = StopBits.One
             };
             Port.DataReceived += Port_DataReceived;
+            if (PortName != null) Connect(PortName);
         }
 
         /// <summary>
@@ -56,41 +53,14 @@ namespace SerialRGBController
             return true;
         }
 
-        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort serialPort = (SerialPort)sender;
-            string msg;
-            msg = serialPort.ReadLine().Trim();
-            if (DEBUG) Debug.WriteLine(msg);
-        }
-
-        public void UserControlScanPorts(ComboBox comboBox)
-        {
-            comboBox.Items.Clear();
-            foreach (string s in SerialPort.GetPortNames())
-            {
-                comboBox.Items.Add(s);
-            }
-            comboBox.SelectedIndex = comboBox.Items.Count - 1;
-            Port.PortName = comboBox.Text;
-        }
-
-        /// <summary>
-        /// Search for ports and set active port to last port found
-        /// </summary>
-        public void FindPorts()
-        {
-            string[] ports = SerialPort.GetPortNames();
-            Port.PortName = ports[ports.Length - 1];
-        }
-
         /// <summary>
         /// Connect to currently set PortName
         /// </summary>
-        public void Connect()
+        public void Connect(string portName)
         {
             try
             {
+                Port.PortName = portName;
                 Port.Open();
                 Port.DtrEnable = true;
                 System.Threading.Thread.Sleep(100);
@@ -119,6 +89,12 @@ namespace SerialRGBController
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort serialPort = (SerialPort)sender;
+            Debug.WriteLine(serialPort.ReadLine().Trim());
         }
     }
 }

@@ -2,14 +2,12 @@ int PIN[4] = {3, 5, 6, 4}; // R G B GND
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial) 
-  {
+  while (!Serial) {
     ; // Wait for serial port to connect. Needed for native USB port only
   }
 
   // Send a byte to establish contact until receiver responds
-  while (Serial.available() <= 0) 
-  {
+  while (Serial.available() <= 0) {
     Serial.println("CONNECTING...");
     delay(300);
   }
