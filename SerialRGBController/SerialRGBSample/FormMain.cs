@@ -35,6 +35,7 @@ namespace SerialRGBSample
             }
 
             communication.SendColor(Color.Black);
+            communication.Disconnect();
             btnManualCycle.BackColor = SystemColors.Control;
             serialRGBController.Enabled = true;
         }

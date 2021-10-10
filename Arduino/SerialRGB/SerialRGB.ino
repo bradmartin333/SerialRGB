@@ -1,8 +1,8 @@
-int KEY[3] = {82, 71, 66};
-int PIN[4] = {3, 5, 6, 4};
-long LUX[3] = {0, 0, 0};
-bool CMD[3] = {false, false, false};
-int ledGnd = 4;
+String KEY[3] = {"R", "G", "B"};
+int PIN[4] = {3, 5, 6, 4}; // PIN[4] is LED GND
+long LUX[3] = {0, 0, 0}; // PWM to set pin to
+int ACTIVE = 0; // Pin lux currently being added up
+bool UPDATE = false;
 
 void setup() {
   Serial.begin(9600);
@@ -12,8 +12,8 @@ void setup() {
   establishContact();  // send a byte to establish contact until receiver responds
   Serial.println("LED CONTROLLER CONNECTED");
 
-  for (int i = 0; i < sizeof PIN; i++)
-  {
+  for (int i = 0; i < 4; i++)
+  { 
     pinMode(PIN[i], OUTPUT);
     analogWrite(PIN[i], LOW);
   }
@@ -30,34 +30,25 @@ void loop() {
   int bytes = Serial.available();
   if (bytes > 0)
   {
+    UPDATE = true;
     int inByte = Serial.read();
-    if (inByte == KEY[0])
-      CMD[0] = true;
-    else if (inByte == KEY[1])
-      CMD[1] = true;
-    else if (inByte == KEY[2])
-      CMD[2] = true;
+    if (inByte == 32)
+      ACTIVE++;
     else
-    {
-      for (int i = 0; i < sizeof CMD; i++)
-      {
-        if (CMD[i])
-          LUX[i] += (long(inByte - '0') * (pow(10, bytes)) + 1) / 10;
-      }
-    }
+      LUX[ACTIVE] += inByte;
   }
-  else
+  else if (UPDATE)
   {
-    for (int i = 0; i < sizeof CMD; i++)
+    for (int i = 0; i < 3; i++)
     {
-      if (CMD[i])
-      {
-        Serial.println(String((char)KEY[i]) + String(LUX[i]));
-        analogWrite(PIN[i], LUX[i]);
-        LUX[i] = 0;
-        CMD[i] = false;
-      }
+      if (LUX[i] > 0)
+        LUX[i] -= 32;
+      Serial.println(KEY[i] + String(LUX[i]));
+      analogWrite(PIN[i], LUX[i]);
+      LUX[i] = 0;
     }
+    ACTIVE = 0;
+    UPDATE = false;
   }
   delay(10);
 }

@@ -45,6 +45,7 @@
             // 
             // serialRGBController
             // 
+            this.serialRGBController.Debug = true;
             this.serialRGBController.Location = new System.Drawing.Point(12, 12);
             this.serialRGBController.Name = "serialRGBController";
             this.serialRGBController.Size = new System.Drawing.Size(145, 114);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,6 +7,12 @@ namespace SerialRGBController
 {
     public partial class SerialRGBController : UserControl
     {
+        [
+            Description("Application will try to automatically connect to first appropriate COM port"),
+            Category("Data")
+        ]
+        public bool Debug { get; set; } = false;
+
         public Communication Communication;
         
         /// <summary>
@@ -14,7 +21,11 @@ namespace SerialRGBController
         public SerialRGBController()
         {
             InitializeComponent();
-            Communication = new Communication();
+        }
+
+        private void SerialRGBController_Load(object sender, EventArgs e)
+        {
+            Communication = new Communication(Debug);
             Communication.UserControlScanPorts(comboBox);
             Disposed += Controller_Disposed;
         }

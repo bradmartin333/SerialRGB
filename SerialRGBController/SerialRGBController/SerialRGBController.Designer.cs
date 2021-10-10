@@ -111,6 +111,7 @@ namespace SerialRGBController
             this.Controls.Add(this.tableLayoutPanel);
             this.Name = "SerialRGBController";
             this.Size = new System.Drawing.Size(145, 114);
+            this.Load += new System.EventHandler(this.SerialRGBController_Load);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
