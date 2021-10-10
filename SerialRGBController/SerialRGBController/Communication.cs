@@ -21,7 +21,7 @@ namespace SerialRGBController
             this.DEBUG = DEBUG;
             Port = new SerialPort
             {
-                BaudRate = 9600,
+                BaudRate = 115200,
                 DataBits = 8,
                 DiscardNull = false,
                 DtrEnable = false,
@@ -36,20 +36,17 @@ namespace SerialRGBController
         }
 
         /// <summary>
-        /// Arduino will set the R G B channels together with a small delay
+        /// Arduino will set the R G B channels together with a 10ms delay
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
         public bool SendColor(Color color)
         {
             try
-            {
-                string R = LuxToString(color.R);
-                string G = LuxToString(color.G);
-                string B = LuxToString(color.B);
-                string output = string.Format("{0} {1} {2}", R, G, B);
-                Port.Write(output);
-                System.Threading.Thread.Sleep(100);
+            { 
+                byte[] output = new byte[] { color.R, color.G, color.B };
+                Port.Write(output, 0, 3);
+                System.Threading.Thread.Sleep(10);
             }
             catch (Exception ex)
             {
@@ -59,45 +56,11 @@ namespace SerialRGBController
             return true;
         }
 
-        /// <summary>
-        /// Converts a 0-255 number to a string of characters whose Dec value adds up to the number + 32
-        /// The number 32 signifies a space and the space is used as a delimeter in the Port output
-        /// </summary>
-        /// <param name="lux"></param>
-        /// <returns></returns>
-        private string LuxToString(int lux)
-        { 
-            string output = string.Empty;
-            lux += 32;
-            while (true)
-            {
-                if (lux >= 126)
-                {
-                    output += Encoding.ASCII.GetString(new byte[] { 126 });
-                    lux -= 126;
-                }
-                else if (lux >= 33)
-                {
-                    output += Encoding.ASCII.GetString(new byte[] { (byte)lux });
-                    break;
-                }
-                else // Lux of 0
-                    break;
-            }
-            return output;
-        }
-
         private void Port_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort serialPort = (SerialPort)sender;
             string msg;
-            msg = serialPort.ReadLine();
-            MsgIn(msg);
-        }
-
-        private void MsgIn(string text)
-        {
-            string msg = text.Trim();
+            msg = serialPort.ReadLine().Trim();
             if (DEBUG) Debug.WriteLine(msg);
         }
 
@@ -131,7 +94,9 @@ namespace SerialRGBController
                 Port.Open();
                 Port.DtrEnable = true;
                 System.Threading.Thread.Sleep(100);
-                Port.Write(" ");
+                byte[] output = new byte[] { 0, 0, 0 };
+                Port.Write(output, 0, 3);
+                System.Threading.Thread.Sleep(250);
             }
             catch (Exception ex)
             {
@@ -148,7 +113,7 @@ namespace SerialRGBController
             {
                 Port.Close();
                 Port.DtrEnable = false;
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(250);
             }
             catch (Exception ex)
             {

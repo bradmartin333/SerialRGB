@@ -31,7 +31,6 @@ namespace SerialRGBSample
                 btnManualCycle.BackColor = color;
                 communication.SendColor(color);
                 Application.DoEvents();
-                System.Threading.Thread.Sleep(10);
             }
 
             communication.SendColor(Color.Black);
