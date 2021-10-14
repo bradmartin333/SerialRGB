@@ -6,7 +6,7 @@ namespace SerialRGBSample
 {
     public partial class SampleForm : Form
     {
-        readonly SerialRGBController.Communication Communication = new SerialRGBController.Communication("COM4");
+        readonly SerialRGBController.Communication Communication = new SerialRGBController.Communication("COM3");
         bool UpdatingScroll = false;
 
         public SampleForm()

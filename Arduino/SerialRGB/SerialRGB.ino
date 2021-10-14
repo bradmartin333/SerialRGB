@@ -1,4 +1,4 @@
-int PIN[4] = {3, 5, 6, 4}; // R G B GND
+int PIN[4] = {5, 6, 3, 4}; // R G B GND
 
 void setup() {
   Serial.begin(115200);
