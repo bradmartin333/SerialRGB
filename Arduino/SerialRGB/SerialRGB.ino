@@ -1,7 +1,9 @@
 int PIN[4] = {5, 6, 3, 4}; // R G B GND
+int incomingByte = 0; // for incoming serial data
+int IDX = 0;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial) {
     ; // Wait for serial port to connect. Needed for native USB port only
   }
@@ -18,8 +20,19 @@ void setup() {
 }
 
 void loop() {
-  if (Serial.available() == 3)
-    for (int i = 0; i < 3; i++)
-      analogWrite(PIN[i], Serial.read());
+  // send data only when you receive data:
+  if (Serial.available() > 0) {
+    // read the incoming byte:
+    incomingByte = Serial.read();
+    // say what you got:
+    Serial.print(IDX, DEC);
+    Serial.print("\t");
+    Serial.println(incomingByte, DEC);
+    // set pin
+    analogWrite(PIN[IDX], incomingByte);
+    IDX++;
+    // reset indexer
+    if (IDX == 3) IDX = 0;
+  }
   delay(10);
 }
