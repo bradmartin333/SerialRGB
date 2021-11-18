@@ -1,4 +1,4 @@
-int PIN[4] = {5, 6, 3, 4}; // R G B GND
+int PIN[3] = {3, 5, 6}; // R G B
 int incomingByte = 0; // for incoming serial data
 int IDX = 0;
 
@@ -15,7 +15,7 @@ void setup() {
   }
   Serial.println("LED CONTROLLER CONNECTED");
 
-  for (int i = 0; i < 4; i++)
+  for (int i = 0; i < 3; i++)
     pinMode(PIN[i], OUTPUT);
 }
 
