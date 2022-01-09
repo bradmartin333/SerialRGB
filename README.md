@@ -1,4 +1,4 @@
-# SerialRGB [![CodeFactor](https://www.codefactor.io/repository/github/bradmartin333/serialrgb/badge)](https://www.codefactor.io/repository/github/bradmartin333/serialrgb)
+# SerialRGB
 WinForms Arduino RGB Controller
 
 1) Flash an Arduino with the .ino
