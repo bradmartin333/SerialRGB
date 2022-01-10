@@ -1,6 +1,4 @@
 int PIN[3] = {3, 5, 6}; // R G B
-int incomingByte = 0; // for incoming serial data
-int IDX = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -20,19 +18,32 @@ void setup() {
 }
 
 void loop() {
-  // send data only when you receive data:
-  if (Serial.available() > 0) {
-    // read the incoming byte:
-    incomingByte = Serial.read();
-    // say what you got:
-    Serial.print(IDX, DEC);
-    Serial.print("\t");
-    Serial.println(incomingByte, DEC);
-    // set pin
-    analogWrite(PIN[IDX], incomingByte);
-    IDX++;
-    // reset indexer
-    if (IDX == 3) IDX = 0;
+  //RRGGBB
+  if (Serial.available() == 6) {
+    byte a = Serial.read();
+    byte b = Serial.read();
+    int sum = int(a) + int(b);
+    Serial.print("R\t");
+    Serial.println(sum);
+    analogWrite(PIN[0], sum);
+
+    a = Serial.read();
+    b = Serial.read();
+    sum = int(a) + int(b);
+    Serial.print("G\t");
+    Serial.println(sum);
+    analogWrite(PIN[1], sum);
+
+    a = Serial.read();
+    b = Serial.read();
+    sum = int(a) + int(b);
+    Serial.print("B\t");
+    Serial.println(sum);
+    analogWrite(PIN[2], sum);
+  }
+  // Eat up errant serial bytes
+  while (Serial.available() > 0) {
+    byte discard = Serial.read();
   }
   delay(10);
 }
