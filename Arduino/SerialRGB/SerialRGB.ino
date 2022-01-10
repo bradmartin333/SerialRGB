@@ -1,4 +1,5 @@
 int PIN[3] = {3, 5, 6}; // R G B
+bool LOCK = false;
 
 void setup() {
   Serial.begin(9600);
@@ -19,30 +20,34 @@ void setup() {
 
 void loop() {
   //RRGGBB
-  if (Serial.available() == 6) {
+  if (Serial.available() >= 6) {
+    LOCK = true;
+    
     byte a = Serial.read();
     byte b = Serial.read();
     int sum = int(a) + int(b);
-    Serial.print("R\t");
-    Serial.println(sum);
+    Serial.print("R");
+    Serial.print(sum);
     analogWrite(PIN[0], sum);
 
     a = Serial.read();
     b = Serial.read();
     sum = int(a) + int(b);
-    Serial.print("G\t");
-    Serial.println(sum);
+    Serial.print(" G");
+    Serial.print(sum);
     analogWrite(PIN[1], sum);
 
     a = Serial.read();
     b = Serial.read();
     sum = int(a) + int(b);
-    Serial.print("B\t");
+    Serial.print(" B");
     Serial.println(sum);
     analogWrite(PIN[2], sum);
+    
+    LOCK = false;
   }
   // Eat up errant serial bytes
-  while (Serial.available() > 0) {
+  while (Serial.available() > 0 && !LOCK) {
     byte discard = Serial.read();
   }
   delay(10);
